@@ -1,0 +1,6 @@
+zookeeper_myid: 1
+
+zuul_components:
+  - zuul-launcher
+  - zuul-merger
+  - zuul-server
