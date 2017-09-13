@@ -6,7 +6,7 @@ zuul_zuul_v3: True
 
 bonnyci_use_apache: False
 bonnyci_use_nginx: True
-bonnyci_use_app: True
+bonnyci_use_app: False
 
 #datadog_tags:
 #  - "environ:opentech"
@@ -17,22 +17,22 @@ nodepool_git_version: feature/zuulv3
 zuul_git_repo_url: https://github.com/openstack-infra/zuul
 zuul_git_branch: feature/zuulv3
 
-bonnyci_logs_scp_host: zuul0.cloud.phx3.gdg
+bonnyci_logs_scp_host: zuul1.cloud.phx3.gdg
 bonnyci_logs_authorized_key: |
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmdx8xNb/jimxX9Fdoqk+ro3/vwKQDhFwpXQCGafCqldVRHTGYcS8FdKZAwaGg3eP8fN7cafoEJ1JxEJfXZhCi/zKaX+Twqs4s25j5xjo6UDSaC6ixBPTiIQpfJgZLPI9W/APZCW8pmV+f9Q2cj5G4q36twmEtyE2lMOpIUjzk5/EFvBTmXhUM0C/s868FU8pafqSrLqHCMFxEB8YlHtR4kMHJ6nR/W15GrwpdGhYY9HXZR5kB+WKIQVtvEj5flv/lvEXwKtFbgoP/nHWx7uQMAITo4TArbkLRsWI5YNdOPUAV4tFQSUdPvAreETKkbpbPJCbPXEqNnbuN9vK9Tpit9K3Z6fuJPZPPEpI1BC/KieapVAmXtq4xRfTkmZPTKhKmYVisl4t9eg4mCBtDNFp1lrLHaDUzXsN4k7McqDZuQyNpNzgXihPW++dCGVNHkunIjL1LYEMtnLyagD9Y9JQYtamRxcYA7UNK25ZPtqQaxQjNizwodx86KUAcjaF3dODl0VFp8yB+lC0rwFTqIIe3uC1L3zJQb9RcQVMxRJm2yl4+xwRw0rSN63SRH6m+iJfcwt+7+5VuTbgWOucxSuTQlHSR6hsgjjJQ9d6M/N0D0IeDWLABHEsZwSU/kLWHdkn1b209Lc15lWZwmdEX+HVtqjEnoNlDPxImyfLmRIJYrw== bonnyci-logs-upload
 
-bonnyci_zuul_webapp_server_name: zuul0.cloud.phx3.gdg
+bonnyci_zuul_webapp_server_name: zuul1.cloud.phx3.gdg
 
 logstash_elasticsearch_hosts:
   - "http://localhost:9200"
 
 nodepool_gearman_servers:
-  - host: zuul0.cloud.phx3.gdg
+  - host: zuul1.cloud.phx3.gdg
     port: 4730
 
 nodepool_providers:
-  - name: phx3
-    cloud: phx3
+  - name: phx_private
+    cloud: phx_private
     diskimages:
       - name: ubuntu-xenial
         config-drive: true
@@ -77,13 +77,14 @@ integration_handler_integration_id: "{{ secrets.zuul_github_v3_app_id | default(
 integration_handler_integration_key: "{{ zuul_github_app_key_content | default(False) | ternary(zuul_github_app_key_file, '') }}"
 integration_handler_webhook_key: "{{ secrets.zuul_github_v3_webhook_token | default('') }}"
 
-zuul_gearman_server: zuul0.cloud.phx3.gdg
-zuul_logs_url: http://zuul0.cloud.phx3.gdg
+zuul_gearman_server: zuul1.cloud.phx3.gdg
+zuul_logs_url: http://zuul1.cloud.phx3.gdg
 
 zuul_connections:
 
   gd-github:
     driver: github
+    server: github.secureserver.net
     api_token: "{{ secrets.zuul_github_api_key | default('') }}"
     app_id: "{{ secrets.zuul_github_v3_app_id | default('') }}"
     app_key: "{{ zuul_github_app_key_content | default(False) | ternary(zuul_github_app_key_file, '') }}"
@@ -104,12 +105,12 @@ zuul_tenants:
 
 
 zuul_zookeeper_hosts:
-  - zuul0.cloud.phx3.gdg:2181
+  - zuul1.cloud.phx3.gdg:2181
 
-zuul_url_pattern: "https://zuul0.cloud.phx3.gdg/{build.parameters[ZUUL_PIPELINE]}/{build.parameters[ZUUL_PROJECT]}/{build.parameters[ZUUL_CHANGE]}/{build.parameters[ZUUL_UUID]}"
+zuul_url_pattern: "https://zuul1.cloud.phx3.gdg/{build.parameters[ZUUL_PIPELINE]}/{build.parameters[ZUUL_PROJECT]}/{build.parameters[ZUUL_CHANGE]}/{build.parameters[ZUUL_UUID]}"
 
 zuul_ssh_known_hosts:
-  - host: "zuul0.cloud.ph3x.gdg"
-    key: "zuul0.cloud.ph3x.gdg ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdEqxTBaIWiSmbANrp9OwNwssgoMr34db3SJ8OOn0GxBCJFrfvF2riPhioseXlyQTUIqGDJcjVe6r96XnZfrb8lb5qPmXblF4dKUKoMBmQMe0XmSfk5wc/yma7k5+HPIXMT8s3pSwNmkkAZpd9Z9wET0bSrFmJDNW6LXR04qwx5nyrmCnpv991bzQCs3ByEOW6K5zZl6nWYAUnSlGTKVpsOdK3n5J69Q6q+Q2w+OefynoxfUIYEFt9EL4jP/qbyK5fs4WS2JVWzKbkutY/55VdgjzfJz4BE0cRYf1xNAd3v3XeaX0jLIJe1uB4qXZMkW6e/pZBMpkRADaNsGC8khYZ"
+  - host: "zuul1.cloud.phx3.gdg"
+    key: "zuul1.cloud.phx3.gdg ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDB0cPAj4jNkGkuNMlyFe9enRKNwovjAEelplStGGUuKBiBKYRCSq+Od38nbRJ3yhE29pU4uPwfgbzjZ9W5/TxgNxu/pi3C7iWLgQjlBqu32AhuEIA4asN9DNJ0o+3kUE40ngr1PlwZtzCwmfPfTQtZGnilDRE1LdFdpRKz8l5M0A6zMjTeqXpcbvibJM+pB4DH62coWBc1L7/jPtfHzgphvZh1uFsa7fdLFSvKYyEUNL2jR6zNEpnpeIeUdSdkZfAZsjI9o/ATuXQ7KnHoLqsh7dB4Qidw7fpP4d6lxF5ZA3wxG4Ow0LzdHkCv9eeM9xyCQbBlXOd9hnIvExptIqrV"
 
 bonnyci_ara_enabled: true

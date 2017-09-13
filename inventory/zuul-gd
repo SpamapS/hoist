@@ -9,10 +9,13 @@ zuul1
 [nodepool]
 zuul1
 
-[zuul-server]
+[zuul-scheduler]
 zuul1
 
-[zuul-launcher]
+[zuul-web]
+zuul1
+
+[zuul-executor]
 zuul1
 
 [zuul-merger]
@@ -28,7 +31,4 @@ zuul1
 zuul1
 
 [monitoring]
-zuul1
-
-[backups]
 zuul1
