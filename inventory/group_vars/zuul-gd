@@ -89,6 +89,7 @@ zuul_connections:
     app_id: "{{ secrets.zuul_github_v3_app_id | default('') }}"
     app_key: "{{ zuul_github_app_key_content | default(False) | ternary(zuul_github_app_key_file, '') }}"
     webhook_token: "{{ secrets.zuul_github_v3_webhook_token | default('') }}"
+    sshkey: /var/lib/zuul/.ssh/id_rsa
 
 zuul_secrets:
   - name: openstack
@@ -112,5 +113,7 @@ zuul_url_pattern: "https://zuul1.cloud.phx3.gdg/{build.parameters[ZUUL_PIPELINE]
 zuul_ssh_known_hosts:
   - host: "zuul1.cloud.phx3.gdg"
     key: "zuul1.cloud.phx3.gdg ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDB0cPAj4jNkGkuNMlyFe9enRKNwovjAEelplStGGUuKBiBKYRCSq+Od38nbRJ3yhE29pU4uPwfgbzjZ9W5/TxgNxu/pi3C7iWLgQjlBqu32AhuEIA4asN9DNJ0o+3kUE40ngr1PlwZtzCwmfPfTQtZGnilDRE1LdFdpRKz8l5M0A6zMjTeqXpcbvibJM+pB4DH62coWBc1L7/jPtfHzgphvZh1uFsa7fdLFSvKYyEUNL2jR6zNEpnpeIeUdSdkZfAZsjI9o/ATuXQ7KnHoLqsh7dB4Qidw7fpP4d6lxF5ZA3wxG4Ow0LzdHkCv9eeM9xyCQbBlXOd9hnIvExptIqrV"
+  - host: github.secureserver.net
+    key: "github.secureserver.net ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCn36z+R8FXAD+DZXvqxyLXGytG4yDPGWP6LfCkSBSrrC3O+d0DuYKZ9azFznb+8HWTfg66dGnkdyV2FfFxh9pdikCxvw2IDXzJyi3dDfTeET/y2lP7/mTFDz73PkSxdkmzUivEmzLUuQZJzkcPh3L3SXyTrrBeVqv8NJdAHX40swtpOKSoI2qApOaxAtSmejH2Nl57A1oq7DNXJesoNw9MbCQcuolOlaCShV/6+OH0VN4IHvemjRAQuCgr0DQaUnQhuq8lQXnuXqfWCRNs5auoBpNDSqKkG5t+S3JCyRfh5bcFiwYR3ANM1P446gKtSUBGJSQ5l5ijDIvwztJyD7ZR"
 
 bonnyci_ara_enabled: true
