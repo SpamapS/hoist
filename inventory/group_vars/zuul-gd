@@ -31,23 +31,26 @@ nodepool_gearman_servers:
     port: 4730
 
 nodepool_providers:
-  - name: phx_private
-    cloud: phx_private
+  - name: p
+    cloud: p
     diskimages:
       - name: ubuntu-xenial
         config-drive: true
     pools:
       - name: main
-        max-servers: 2
-        networks:
-          - nodepool-sl
+        max-servers: 8
+        networks: []
+        availability-zones:
+          - phx-private-prd-zone-1
+          - phx-private-prd-zone-2
+          - phx-private-prd-zone-3
         labels:
-          - name: ubuntu-xenial
-            min-ram: 1026
+          - name: ux
+            min-ram: 8192
             diskimage: ubuntu-xenial
 
 nodepool_labels:
-  - name: ubuntu-xenial
+  - name: ux
     min-ready: 1
 
 nodepool_diskimages:
@@ -103,6 +106,8 @@ zuul_tenants:
       gd-github:
         config-projects:
           - cbyrum/project-config
+        untrusted-projects:
+          - cbyrum/zuul-jobs
 
 
 zuul_zookeeper_hosts:
