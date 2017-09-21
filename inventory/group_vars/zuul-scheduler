@@ -40,6 +40,25 @@ bonnyci_zuul_webapp_nginx_sites:
         include uwsgi_params;
       }
 
+      location ~ ^/([^/]*)/status.json {
+        proxy_pass http://127.0.0.1:8001/$1/status.json;
+      }
+
+      location ^/(^/]*)/status/console-stream {
+        proxy_pass http://127.0.0.1:9000/console-stream;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      }
+
+      location ^/([^/]*)/status/$ {
+        alias /etc/zuul-web/static/
+      }
+
+      location /connection/ {
+        proxy_pass http://127.0.0.1:8001/connection/;
+      }
+
       location / {
-        proxy_pass http://127.0.0.1:8001/;
+        return 404;
       }
