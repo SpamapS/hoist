@@ -29,6 +29,12 @@
     owner: zuul
   notify: Reload zuul-scheduler
 
+- name: Install link to static source
+  file:
+    path: /etc/zuul/static
+    src: /opt/source/zuul/zuul/web/static
+    state: link
+
 - name: Create zuul status lib dir
   file:
     path: /opt/source/zuul/etc/status/public_html/lib
