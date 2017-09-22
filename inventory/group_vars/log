@@ -89,6 +89,22 @@ bonnyci_logs_apache_vhosts:
       Redirect permanent /ara /ara/
       ProxyPass "/ara/" uwsgi://localhost:3311/
 
+bonnyci_logs_nginx_sites:
+  - name: log
+    server_name: "{{ bonnyci_logs_server_name | default('logs') }}"
+    port: "{{ bonnyci_logs_port | default(80) }}"
+    document_root: "{{ bonnyci_logs_root_dir }}/logs"
+
+    ssl: "{{ bonnyci_logs_ssl | default(False) }}"
+    certificate_file: "{{ letsencrypt_combined_path | default('') }}"
+    certificate_key_file: "{{ letsencrypt_key_path | default('') }}"
+    content: |
+      charset utf-8;
+      location /logs/ {
+        root {{ bonnyci_logs_root_dir }}/logs;
+        autoindex on;
+      }
+
 bonnyci_logs_loganalyze_file_conditions:
   - filename_pattern: ^.*\.txt(\.gz)?$
     filter: SevFilter

@@ -485,6 +485,10 @@
       apache_vhosts: "{{ bonnyci_logs_apache_vhosts }}"
       when: bonnyci_use_apache
 
+    - role: nginx
+      nginx_sites: "{{ bonnyci_logs_nginx_sites }}"
+      when: bonnyci_use_nginx
+
     - role: dd-apache
       tags:
         - monitoring
