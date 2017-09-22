@@ -17,6 +17,8 @@ nodepool_git_version: feature/zuulv3
 zuul_git_repo_url: https://github.com/openstack-infra/zuul
 zuul_git_branch: feature/zuulv3
 
+bonnyci_logs_server_name: zuul0.cloud.phx3.gdg
+bonnyci_logs_port: 8080
 bonnyci_logs_scp_host: zuul0.cloud.phx3.gdg
 bonnyci_logs_authorized_key: |
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCmdx8xNb/jimxX9Fdoqk+ro3/vwKQDhFwpXQCGafCqldVRHTGYcS8FdKZAwaGg3eP8fN7cafoEJ1JxEJfXZhCi/zKaX+Twqs4s25j5xjo6UDSaC6ixBPTiIQpfJgZLPI9W/APZCW8pmV+f9Q2cj5G4q36twmEtyE2lMOpIUjzk5/EFvBTmXhUM0C/s868FU8pafqSrLqHCMFxEB8YlHtR4kMHJ6nR/W15GrwpdGhYY9HXZR5kB+WKIQVtvEj5flv/lvEXwKtFbgoP/nHWx7uQMAITo4TArbkLRsWI5YNdOPUAV4tFQSUdPvAreETKkbpbPJCbPXEqNnbuN9vK9Tpit9K3Z6fuJPZPPEpI1BC/KieapVAmXtq4xRfTkmZPTKhKmYVisl4t9eg4mCBtDNFp1lrLHaDUzXsN4k7McqDZuQyNpNzgXihPW++dCGVNHkunIjL1LYEMtnLyagD9Y9JQYtamRxcYA7UNK25ZPtqQaxQjNizwodx86KUAcjaF3dODl0VFp8yB+lC0rwFTqIIe3uC1L3zJQb9RcQVMxRJm2yl4+xwRw0rSN63SRH6m+iJfcwt+7+5VuTbgWOucxSuTQlHSR6hsgjjJQ9d6M/N0D0IeDWLABHEsZwSU/kLWHdkn1b209Lc15lWZwmdEX+HVtqjEnoNlDPxImyfLmRIJYrw== bonnyci-logs-upload
@@ -81,7 +83,7 @@ integration_handler_integration_key: "{{ zuul_github_app_key_content | default(F
 integration_handler_webhook_key: "{{ secrets.zuul_github_v3_webhook_token | default('') }}"
 
 zuul_gearman_server: zuul0.cloud.phx3.gdg
-zuul_logs_url: http://zuul0.cloud.phx3.gdg
+zuul_logs_url: http://zuul0.cloud.phx3.gdg:8080
 
 zuul_connections:
 
