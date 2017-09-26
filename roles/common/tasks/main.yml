@@ -11,7 +11,6 @@
     - net-tools
 
 - name: Install common packages
-  when: ansible_os_family == "RedHat"
   yum:
     name:
       - make
@@ -21,6 +20,11 @@
       - kernel-devel
       - jq
   when: ansible_os_family == "RedHat"
+
+- name: Install updated rsync for synchronize
+  yum:
+    name: ftp://fr2.rpmfind.net/linux/fedora/linux/development/rawhide/Everything/x86_64/os/Packages//r/rsync-3.1.2-7.fc27.x86_64.rpm
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 - name: set hostname
   hostname:
