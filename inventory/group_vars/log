@@ -101,7 +101,7 @@ bonnyci_logs_nginx_sites:
     content: |
       charset utf-8;
       location /logs/ {
-        root {{ bonnyci_logs_root_dir }}/logs;
+        root {{ bonnyci_logs_root_dir }};
         autoindex on;
       }
 
