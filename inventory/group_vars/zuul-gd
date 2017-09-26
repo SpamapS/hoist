@@ -53,7 +53,7 @@ nodepool_providers:
 
 nodepool_labels:
   - name: ux
-    min-ready: 1
+    min-ready: 2
 
 nodepool_diskimages:
   - name: ubuntu-xenial
@@ -110,6 +110,9 @@ zuul_tenants:
           - cbyrum/project-config
         untrusted-projects:
           - cbyrum/zuul-jobs
+          - cbyrum/godaddy-zuul-jobs
+          - cbyrum/openstack-deploy
+          - cbyrum/k8s-ansible
 
 
 zuul_zookeeper_hosts:
