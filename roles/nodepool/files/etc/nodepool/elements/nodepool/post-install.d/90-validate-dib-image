@@ -38,17 +38,5 @@ function check_virtualenv () {
   fi
 }
 
-function check_zuul_cloner () {
-  reporter "Validating zuul-cloner installation."
-  if [[ ! $(zuul-cloner -h) ]]; then
-    build_failure "zuul-cloner not found or not functional!"
-  fi
-}
-
-function main () {
-  check_python
-  check_virtualenv
-  check_zuul_cloner
-}
-
-main "$@"
+check_python
+check_virtualenv

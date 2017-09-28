@@ -9,6 +9,8 @@
     - uuid-runtime
     - parted
     - kpartx
+    - yum
+    - yum-utils
 
 - name: install required packages
   when: ansible_os_family == 'RedHat'
