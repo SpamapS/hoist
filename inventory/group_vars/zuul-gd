@@ -141,6 +141,7 @@ zuul_tenants:
           - cbyrum/godaddy-zuul-jobs
           - cbyrum/openstack-deploy
           - cbyrum/k8s-ansible
+          - cloudplatform/openstack-helpers
 
 
 zuul_zookeeper_hosts:
